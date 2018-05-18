@@ -1,0 +1,13 @@
+[Unit]
+Description=Attaches and initialises a static ip ENI on AWS EC2 host
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/check-aws-az.sh
+RemainAfterExit=yes
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
